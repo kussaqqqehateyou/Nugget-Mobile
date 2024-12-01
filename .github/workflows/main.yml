@@ -13,10 +13,10 @@ jobs:
       - name: Set up Xcode
         run: sudo xcode-select --switch /Applications/Xcode.app
 
-      - name: Install Theos
+      - name: Install Theos Dependencies
         run: |
-          sudo apt-get update
-          sudo apt-get install -y libimobiledevice6-dev libusbmuxd-dev ideviceinstaller libtool automake libtool-bin
+          brew install libimobiledevice libusbmuxd ideviceinstaller
+          sudo xcode-select --install
 
       - name: Clone Theos
         run: git clone https://github.com/theos/theos.git
