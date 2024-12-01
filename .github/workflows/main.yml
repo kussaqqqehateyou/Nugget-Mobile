@@ -13,6 +13,22 @@ jobs:
       - name: Set up Xcode
         run: sudo xcode-select --switch /Applications/Xcode.app
 
+      - name: Install Theos
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libimobiledevice6-dev libusbmuxd-dev ideviceinstaller libtool automake libtool-bin
+
+      - name: Clone Theos
+        run: git clone https://github.com/theos/theos.git
+
+      - name: Add Theos to PATH
+        run: echo 'export THEOS_DEVICE_IP=auto' >> $GITHUB_ENV
+        run: echo 'export THEOS_DEVICE_PORT=auto' >> $GITHUB_ENV
+        run: echo 'export THEOS_DEVICE_UDID=auto' >> $GITHUB_ENV
+        run: echo 'export THEOS_LDFLAGS=-L/opt/theos/lib' >> $GITHUB_ENV
+        run: echo 'export THEOS_CFLAGS=-I/opt/theos/include' >> $GITHUB_ENV
+        run: echo 'export PATH=/opt/theos/bin:$PATH' >> $GITHUB_ENV
+
       - name: Build the app
         run: make build
 
@@ -26,4 +42,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: iOS App
-          path: ./build/YourApp.ipa
+          path: ./build/Nugget.ipa
