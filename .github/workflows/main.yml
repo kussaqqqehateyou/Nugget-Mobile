@@ -15,8 +15,7 @@ jobs:
 
       - name: Install Theos Dependencies
         run: |
-          brew install libimobiledevice libusbmuxd
-          sudo xcode-select --install
+          brew install libimobiledevice libusbmuxd ideviceinstaller
 
       - name: Clone Theos
         run: git clone https://github.com/theos/theos.git
