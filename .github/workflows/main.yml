@@ -22,12 +22,13 @@ jobs:
         run: git clone https://github.com/theos/theos.git
 
       - name: Add Theos to PATH
-        run: echo 'export THEOS_DEVICE_IP=auto' >> $GITHUB_ENV
-        run: echo 'export THEOS_DEVICE_PORT=auto' >> $GITHUB_ENV
-        run: echo 'export THEOS_DEVICE_UDID=auto' >> $GITHUB_ENV
-        run: echo 'export THEOS_LDFLAGS=-L/opt/theos/lib' >> $GITHUB_ENV
-        run: echo 'export THEOS_CFLAGS=-I/opt/theos/include' >> $GITHUB_ENV
-        run: echo 'export PATH=/opt/theos/bin:$PATH' >> $GITHUB_ENV
+        run: |
+          echo 'export THEOS_DEVICE_IP=auto' >> $GITHUB_ENV
+          echo 'export THEOS_DEVICE_PORT=auto' >> $GITHUB_ENV
+          echo 'export THEOS_DEVICE_UDID=auto' >> $GITHUB_ENV
+          echo 'export THEOS_LDFLAGS=-L/opt/theos/lib' >> $GITHUB_ENV
+          echo 'export THEOS_CFLAGS=-I/opt/theos/include' >> $GITHUB_ENV
+          echo 'export PATH=/opt/theos/bin:$PATH' >> $GITHUB_ENV
 
       - name: Build the app
         run: make build
